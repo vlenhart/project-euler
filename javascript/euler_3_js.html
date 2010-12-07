@@ -1,0 +1,29 @@
+<script type="application/javascript;version=1.8">
+
+function isprime(num) {
+  for(var i=2; i<num; i++)
+    if(num%i==0)
+      return false;
+  return true;
+}
+
+/*
+// naive
+var max=600851475143;
+
+for(var i=2; i<Math.floor(Math.sqrt(max)); i++) {
+  if(isprime(i))
+    if(max % i == 0)
+      console.log(i);
+}
+*/
+
+var max=600851475143;
+
+for(var i=Math.floor(Math.sqrt(max)); i>2; i--) {
+  if(isprime(i))
+    if(max % i == 0)
+      console.log(i);
+}
+
+</script>

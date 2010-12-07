@@ -1,0 +1,102 @@
+<script type="application/javascript;version=1.8">
+//create and array of the needed numbers and sum them up
+var euler_1_1 = function() {
+
+function sum(arr){
+  var sum = 0;
+  for(var i=0; i<arr.length; i++)
+    sum+=arr[i];
+  return sum;
+}
+
+function ismultiple(val) {
+  return (val%3==0||val%5==0);
+}
+
+var arr=new Array();
+for(var i=1; i<1000; i++){
+  if(ismultiple(i)) {
+    //console.log(i);
+    arr.push(i);
+  }
+}
+console.log(sum(arr));
+
+}();
+//create an array of all multiples of 3 and 5, without duplicates, calculate the sum
+var euler_1_2 = function() {
+
+function sum(arr){
+  var sum = 0;
+  for(var i=0; i<arr.length; i++)
+    sum+=arr[i];
+  return sum;
+}
+var arr=new Array();
+for(var i=3;i<1000;i+=3) {
+  arr.push(i);
+}
+for(var i=5;i<1000;i+=5) {
+  if(arr.indexOf(i)==-1)
+    arr.push(i);
+}
+arr=arr.sort(function(a,b){return a-b});
+console.log(sum(arr));
+
+}();
+//filter an array with all numbers and sum them up using reduce
+var euler_1_3 = function() {
+
+var arr=new Array(1000);
+for(var i=0;i<arr.length;i++)arr[i]=i;
+console.log(arr.filter(function(a){return a%3==0||a%5==0}).reduce(function(a,b){return a+b}));
+
+}();
+//use reduce to filter
+var euler_1_4 = function() {
+
+var arr=new Array();for(var i=0;i<1000;i++)arr[i]=i;
+console.log(arr.reduce(function(a,b){return (b%3==0||b%5==0)?a+b:a;}))
+
+}();
+// new idea: excel table
+var euler_1_5 = function() {
+
+var l=[3,2,1,3,1,2,3];
+
+function nums(max) {
+  var num=0;
+  var i=0;
+  while (true) {
+    num += l[i++%l.length];
+    if(num>=max)
+      break;
+    yield num;
+  }
+}
+
+console.log([i for each (i in nums(1000))].reduce(function(a,b){return a+b}));
+
+}();
+// more readable, no generator function
+var euler_1_6 = function() {
+
+var l=[3,2,1,3,1,2,3];
+var sum=0;
+var num=0;
+for(var i=0;num<1000;i++) {
+  sum+=num;
+  num+=l[i%l.length];
+}
+console.log(sum);
+
+}();
+// faster and less readable
+var euler_1_7 = function() {
+
+var l=[3,2,1,3,1,2,3];
+for(var i=0,s=0,n=0;n<1000;s+=n,n+=l[i%l.length],i++);
+console.log(s);
+
+}();
+</script>
